@@ -14,11 +14,6 @@ return {
             -- types = "italic,bold",
           },
         },
-        specs = {
-          github_dark = {
-            -- bg = "#000000", -- Set background to black
-          },
-        },
       })
       vim.cmd("colorscheme github_dark_default")
     end,
