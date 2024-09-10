@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         if exit_code == 0 then
           -- print("Ruff: No issues found")
         else
-          print("Ruff: Issues found")
+          -- print("Ruff: Issues found")
           -- vim.cmd("copen")
         end
       end,

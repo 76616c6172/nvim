@@ -67,22 +67,4 @@ return {
       },
     },
   },
-  {
-    -- configure completion shortcuts
-    "astral-sh/ruff-lsp",
-    config = function(_, opts)
-      require("lspconfig").ruff_lsp.setup({
-        on_attach = function(client, bufnr)
-          -- disable formatting
-          client.server_capabilities.documentFormattingProvider = false
-          client.server_capabilities.documentRangeFormattingProvider = false
-        end,
-        -- init_options = {
-        -- settings = {
-        -- args = { "--quiet" }, --supress "no issues found msg"
-        -- },
-        -- },
-      })
-    end,
-  },
 }

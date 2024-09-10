@@ -8,6 +8,7 @@ vim.opt.softtabstop = 0
 vim.opt.expandtab = true
 vim.o.expandtab = true
 vim.opt.guifont = "MononokiNerdFontMono-Regular"
+vim.opt.linespace = 2
 vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.g.python_recommended_style = 0
 vim.opt.guicursor =

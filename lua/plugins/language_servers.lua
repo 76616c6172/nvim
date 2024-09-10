@@ -1,53 +1,43 @@
--- lua/plugins/lsp.lua (or wherever your lsp settings are)
 return {
-  -- ensure mason.nvim is loaded and configured
   {
     "williamboman/mason.nvim",
     config = function()
-      require("mason").setup({
-        -- optional config here
-      })
+      require("mason").setup()
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "pyright" }, -- install pyright automatically
+        ensure_installed = { "pyright" },
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
-    enable = true,
-    opts = {
-      diagnostics = { virtual_text = { prefix = "icons" } },
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = false,
+    config = function()
+      local lspconfig = require("lspconfig")
+      
+      lspconfig.pyright.setup({
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "off",
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
           },
         },
-      },
-    },
-    ---@type lspconfig.options
-    servers = {
-      pyright = true,
-      lua_ls = {
-        -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
-        -- single_file_support = true,
+      })
+
+      lspconfig.lua_ls.setup({
         settings = {
           Lua = {
-            misc = {
-              -- parameters = { "--loglevel=trace" },
-            },
-            -- hover = { expandAlias = false },
             type = {
               castNumberToInteger = true,
             },
             diagnostics = {
               disable = { "incomplete-signature-doc", "trailing-space" },
-              -- enable = false,
               groupSeverity = {
                 strong = "Warning",
                 strict = "Warning",
@@ -68,6 +58,16 @@ return {
               },
               unusedLocalExclude = { "_*" },
             },
+          },
+        },
+      })
+    end,
+    opts = {
+      diagnostics = { virtual_text = { prefix = "icons" } },
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = false,
           },
         },
       },

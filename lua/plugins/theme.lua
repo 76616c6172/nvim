@@ -25,7 +25,7 @@ return {
           },
         },
       })
-      --vim.cmd("colorscheme github_dark_dimmed")
+      -- vim.cmd("colorscheme github_dark_dimmed")
       vim.cmd("colorscheme github_dark_default")
       -- defer cursor highlight setting to ensure it's applied after everything
       vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = "#00FF00" })
