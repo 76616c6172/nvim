@@ -35,3 +35,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = "*",
   command = [[%s/\s\+$//e]],
 })
+
+-- use an autocmd to ensure the highlight is set after the colorscheme
+vim.api.nvim_create_autocmd("colorscheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = "#00FF00" })
+  end,
+})
