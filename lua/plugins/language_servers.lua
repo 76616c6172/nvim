@@ -17,7 +17,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
-      
+
       lspconfig.pyright.setup({
         settings = {
           python = {
@@ -62,15 +62,19 @@ return {
         },
       })
     end,
-    opts = {
-      diagnostics = { virtual_text = { prefix = "icons" } },
-      capabilities = {
+    opts = function(_, opts)
+      -- customize LSP handlers with rounded borders
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+      vim.lsp.handlers["textDocument/signatureHelp"] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+      opts.diagnostics = { virtual_text = { prefix = "icons" } }
+      opts.capabilities = {
         workspace = {
           didChangeWatchedFiles = {
             dynamicRegistration = false,
           },
         },
-      },
-    },
+      }
+    end,
   },
 }
