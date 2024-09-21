@@ -5,6 +5,7 @@ vim.opt.cursorline = false
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 0
+vim.opt.showtabline = 0
 vim.opt.expandtab = true
 vim.o.expandtab = true
 vim.opt.guifont = "MononokiNerdFontMono-Regular"
